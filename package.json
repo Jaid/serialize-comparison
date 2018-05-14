@@ -1,0 +1,66 @@
+{
+    "name": "url-fragment-serialize-comparison",
+    "main": "./build/index.js",
+    "bin": "./build/cli.js",
+    "version": "1.0.0",
+    "description": "Comparison tool for analyzing performance and efficiency of serialization methods",
+    "license": "MIT",
+    "author": {
+        "name": "Jaid",
+        "url": "https://github.com/Jaid",
+        "email": "jaid.jsx@gmail.com"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Jaid/url-fragment-serialize-comparison"
+    },
+    "engines": {
+        "node": ">=6.10"
+    },
+    "files": [
+        "build/*"
+    ],
+    "babel": {
+        "extends": "./config/babel.js"
+    },
+    "eslintConfig": {
+        "extends": "./config/eslint.js"
+    },
+    "devDependencies": {
+        "@babel/cli": "^7.0.0-beta.46",
+        "@babel/core": "^7.0.0-beta.46",
+        "@babel/preset-env": "7.0.0-beta.46",
+        "@babel/preset-stage-1": "7.0.0-beta.46",
+        "@babel/register": "^7.0.0-beta.46",
+        "babel-eslint": "^8.2.3",
+        "babel-loader": "8.0.0-beta.2",
+        "babel-plugin-lodash": "^3.3.2",
+        "babel-preset-minify": "0.4",
+        "eslint": "^4.19.1",
+        "faster.js": "^1.1.0",
+        "webpack": "^4.8.3",
+        "webpack-cli": "^2.1.3"
+    },
+    "dependencies": {
+        "base-x": "^3.0.4",
+        "compressjs": "^1.0.3",
+        "ink": "^0.5.0",
+        "js-yaml": "^3.11.0",
+        "jsonpack": "^1.1.5",
+        "lodash": "^4.17.10",
+        "lz-string": "^1.4.4",
+        "lzjs": "^1.3.0",
+        "lzwcompress": "^0.2.4",
+        "pako": "^1.0.6",
+        "tty-table": "^2.6.3"
+    },
+    "scripts": {
+        "start": "node --require @babel/register src/cli.jsx",
+        "build-prod": "npx rimraf build && NODE_ENV=production npx webpack --config config/webpack.babel.js",
+        "build-dev": "NODE_ENV=development npx webpack --config config/webpack.babel.js",
+        "start-dev": "npm run build-dev && node build/cli.js",
+        "fix": "npx eslint --fix --ext .jsx,.js src",
+        "dist-size": "npm run build-prod && npx dist-size build",
+        "env": "printenv"
+    }
+}
