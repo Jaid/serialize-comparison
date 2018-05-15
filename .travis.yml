@@ -1,0 +1,13 @@
+language: node_js
+node_js:
+  - "10.1.0"
+cache:
+  yarn: true
+script:
+  - yarn run build-website && cp dist/index.html dist/404.html
+deploy:
+  provider: pages
+  local-dir: ./dist/
+  fqdn: serialize-comparison.j4id.com
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN # https://github.com/settings/tokens
