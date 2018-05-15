@@ -33,13 +33,10 @@
         "@babel/preset-stage-1": "7.0.0-beta.46",
         "@babel/register": "^7.0.0-beta.46",
         "babel-eslint": "^8.2.3",
-        "babel-loader": "8.0.0-beta.2",
         "babel-plugin-lodash": "^3.3.2",
         "babel-preset-minify": "0.4",
         "eslint": "^4.19.1",
-        "faster.js": "^1.1.0",
-        "webpack": "^4.8.3",
-        "webpack-cli": "^2.1.3"
+        "faster.js": "^1.1.0"
     },
     "dependencies": {
         "base-x": "^3.0.4",
@@ -56,8 +53,8 @@
     },
     "scripts": {
         "start": "node --require @babel/register src/cli.jsx",
-        "build-prod": "npx rimraf build && NODE_ENV=production npx webpack --config config/webpack.babel.js",
-        "build-dev": "NODE_ENV=development npx webpack --config config/webpack.babel.js",
+        "build-prod": "npx rimraf build && NODE_ENV=production npx babel --out-dir build src",
+        "build-dev": "NODE_ENV=development npx babel",
         "start-dev": "npm run build-dev && node build/cli.js",
         "fix": "npx eslint --fix --ext .jsx,.js src",
         "dist-size": "npm run build-prod && npx dist-size build",
