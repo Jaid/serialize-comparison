@@ -41,7 +41,7 @@ console.log(table([
     {
         alias: "MD5",
         value: "bin",
-        formatter: bin => crypto.createHash("md5").update(bin).digest("hex").substring(0, 4),
+        formatter: bin => crypto.createHash("md5").update(bin).digest("hex").toUpperCase().substring(0, 4),
         width: 6
     },
     {

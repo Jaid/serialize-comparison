@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+<head>
+    <title>serialize-comparison</title>
+    <link rel="icon" href="<%= iconUrl %>" type="image/svg+xml"/>
+    <style>
+        body {
+            background-color: #2C2f33;
+            color: #DDD;
+            font-family: Ubuntu, Roboto, Arial, sans-serif;
+            text-align: center;
+        }
+        a {
+            text-decoration: none;
+            color: #4ab1ff;
+        }
+        #icon {
+            vertical-align: middle;
+        }
+        #banner {
+            display: inline-block;
+            font-size: 140%;
+            margin: 0.6em;
+            vertical-align: middle;
+        }
+        #table {
+            margin: auto;
+            margin-top: 2em;
+            border-collapse: collapse;
+        }
+        #table td, #table th {
+            padding: 0.7em;
+            border: 1px solid #404040;
+        }
+        #table tr:nth-child(odd) {
+            background: #0003;
+        }
+        .number {
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <img id="icon" src="<%= iconUrl %>"/>
+    <div id="banner"><%= manifest.name %></div>
+    <div id="description">See <a href="<%= manifest.repository.url %>">GitHub repository</a> for more information.</div>
+    <table id="table">
+        <tr>
+            <th>Rank</th>
+            <th>Method</th>
+            <th>MD5</th>
+            <th>Bin size</th>
+            <% for (const [name, encoder] of Object.entries(encoderHeaders)) { %>
+                <th><%= name %> size</th>
+            <% } %>
+            <th>Speed</th>
+        </tr>
+    <% for (const result of results) { %>
+        <tr>
+            <td class="number"><%= result.rank %></td>
+            <td><%= result.name %></td>
+            <td><code><%= result.md5 %></code></td>
+            <td class="number"><%= result.bin.length %></td>
+            <% for (const [name, encoder] of Object.entries(encoderHeaders)) { %>
+                <td class="number"><%= encoder.getter(result) %></td>
+            <% } %>
+            <td class="number"><%= result.time %> ms</td>
+        </tr>
+    <% } %>
+    </table>
+</body>
+</html>

@@ -35,8 +35,11 @@
         "babel-eslint": "^8.2.3",
         "babel-plugin-lodash": "^3.3.2",
         "babel-preset-minify": "0.4",
+        "ejs": "^2.6.1",
         "eslint": "^4.19.1",
-        "faster.js": "^1.1.0"
+        "faster.js": "^1.1.0",
+        "html-minifier": "^3.5.15",
+        "mkdirp": "^0.5.1"
     },
     "dependencies": {
         "base-x": "^3.0.4",
