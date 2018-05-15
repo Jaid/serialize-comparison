@@ -1,5 +1,5 @@
 {
-    "name": "url-fragment-serialize-comparison",
+    "name": "serialize-comparison",
     "main": "./build/index.js",
     "bin": "./build/cli.js",
     "version": "1.0.0",
@@ -12,7 +12,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/Jaid/url-fragment-serialize-comparison"
+        "url": "https://github.com/Jaid/serialize-comparison"
     },
     "engines": {
         "node": ">=6.10"
