@@ -1,13 +1,13 @@
 import lodash from "lodash"
 import defaultData from "./data"
-import defaultFormats from "./formats"
+import defaultFormatters from "./formatters"
 import defaultCompressors from "./compressors"
 import defaultEncoders from "./encoders"
 
 export default (options = {}) => {
     options = {
         data: defaultData,
-        formats: defaultFormats,
+        formatters: defaultFormatters,
         compressors: defaultCompressors,
         encoders: defaultEncoders,
         ...options
@@ -15,11 +15,14 @@ export default (options = {}) => {
 
     const results = []
 
-    const test = (name, func) => {
+    const test = (data, formatter, compressor) => {
         const startTime = Number(new Date)
-        const result = func()
-        if (!result.encoders) {
-            result.encoders = {}
+        const serialized = formatter.format(data)
+        const result = {
+            compressor,
+            formatter,
+            bin: compressor.compress(serialized),
+            encoders: {}
         }
 
         for (const [encoderName, encoderFunction] of Object.entries(options.encoders)) {
@@ -29,16 +32,17 @@ export default (options = {}) => {
         }
 
         const time = (Number(new Date) - startTime) || "< 1"
+
         results.push({
-            name,
+            name: `${formatter.name} > ${compressor.name}`,
             time,
             ...result
         })
     }
 
-    for (const [compressorName, compressorFunction] of Object.entries(options.compressors)) {
-        for (const [formatName, formatFunction] of Object.entries(options.formats)) {
-            test(`${formatName} → ${compressorName}`, () => compressorFunction(formatFunction(options.data)))
+    for (const compressor of options.compressors) {
+        for (const formatter of options.formatters) {
+            test(options.data, formatter, compressor)
         }
     }
 

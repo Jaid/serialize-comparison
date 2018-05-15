@@ -2,7 +2,7 @@
     "name": "serialize-comparison",
     "main": "./build/index.js",
     "bin": "./build/cli.js",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Comparison tool for analyzing performance and efficiency of object serialization methods",
     "license": "MIT",
     "author": {
@@ -26,6 +26,23 @@
     "eslintConfig": {
         "extends": "./config/eslint.js"
     },
+    "keywords": [
+        "compressing",
+        "compressed",
+        "compress",
+        "serialize",
+        "serializer",
+        "serialization",
+        "stringify",
+        "json",
+        "yaml",
+        "test",
+        "demo",
+        "deflate",
+        "zlib",
+        "benchmark",
+        "comparison"
+    ],
     "devDependencies": {
         "@babel/cli": "^7.0.0-beta.46",
         "@babel/core": "^7.0.0-beta.46",
@@ -62,8 +79,6 @@
         "start-letter-frequency": "node --require @babel/register research/letterFrequency.js",
         "build-website": "node --require @babel/register website",
         "build-prod": "npx rimraf build && NODE_ENV=production npx babel --out-dir build src",
-        "build-dev": "NODE_ENV=development npx babel",
-        "start-dev": "npm run build-dev && node build/cli.js",
         "fix": "npx eslint --fix --ext .jsx,.js src",
         "dist-size": "npm run build-prod && npx dist-size build",
         "env": "printenv"

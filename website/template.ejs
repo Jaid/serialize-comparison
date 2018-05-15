@@ -43,28 +43,30 @@
 <body>
     <img id="icon" src="<%= iconUrl %>"/>
     <div id="banner"><%= manifest.name %></div>
-    <div id="description">See <a href="<%= manifest.repository.url %>">GitHub repository</a> for more information.</div>
+    <div id="description">v<%= manifest.version %><br/>See <a href="<%= manifest.repository.url %>">GitHub repository</a> for more information.</div>
     <table id="table">
         <tr>
             <th>Rank</th>
-            <th>Method</th>
-            <th>MD5</th>
+            <th>Serializer</th>
+            <th>Compressing Algorithm</th>
             <th>Bin size</th>
             <% for (const [name, encoder] of Object.entries(encoderHeaders)) { %>
                 <th><%= name %> size</th>
             <% } %>
             <th>Speed</th>
+            <th>MD5</th>
         </tr>
     <% for (const result of results) { %>
         <tr>
             <td class="number"><%= result.rank %></td>
-            <td><%= result.name %></td>
-            <td><code><%= result.md5 %></code></td>
+            <td><% if(result.formatter.link) { %><a href="<%= result.formatter.link %>"><%= result.formatter.name %></a><% } else { %><%= result.formatter.name %><% } %></td>
+            <td><% if(result.compressor.link) { %><a href="<%= result.compressor.link %>"><%= result.compressor.name %></a><% } else { %><%= result.compressor.name %><% } %></td>
             <td class="number"><%= result.bin.length %></td>
             <% for (const [name, encoder] of Object.entries(encoderHeaders)) { %>
                 <td class="number"><%= encoder.getter(result) %></td>
             <% } %>
             <td class="number"><%= result.time %> ms</td>
+            <td><code><%= result.md5 %></code></td>
         </tr>
     <% } %>
     </table>

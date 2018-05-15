@@ -43,6 +43,7 @@ export default {
                 blackberryOs: false,
                 windows: false
             }
-        }
+        },
+        text: "I'm beginning to feel like a rap god, rap god. All my people from the front to the back nod, back nod. Now who thinks their arms are long enough to slap box, slap box? Let me show you maintaining these serializers ain't that hard, that hard."
     }
 }
