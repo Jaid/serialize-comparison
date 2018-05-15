@@ -2,44 +2,63 @@ import comparison from "./index"
 
 import crypto from "crypto"
 import lodash from "lodash"
+import table from "tty-table"
 
 const results = comparison()
+const topResults = lodash.slice(results, 0, 20).map((result, index) => ({
+    rank: index + 1,
+    ...result
+}))
 
-/*
- * console.log(table([
- * {
- * alias: "Method",
- * value: "name",
- * align: "left"
- * },
- * {
- * alias: "MD5",
- * value: "bin",
- * formatter: bin => crypto.createHash("md5").update(bin).digest("hex").substring(0, 4),
- * width: 6
- * },
- * {
- * alias: "Hash-safe size",
- * value: "hashSafe",
- * formatter: hashSafe => hashSafe?.length,
- * width: 11,
- * align: "right"
- * },
- * {
- * alias: "Bin size",
- * value: "bin",
- * formatter: bin => bin?.length,
- * width: 11,
- * align: "right"
- * },
- * {
- * alias: "Time",
- * value: "time",
- * align: "right",
- * width: 8,
- * formatter: value => `${value} ms`
- * }
- * ], lodash.slice(results, 0, 20)).render())
- */
+const encoderHeaders = {}
+for (const result of topResults) {
+    for (const [encoderName, text] of Object.entries(result.encoders)) {
+        if (!encoderHeaders[encoderName]) {
+            encoderHeaders[encoderName] = {
+                alias: `${encoderName} size`,
+                value: "encoders",
+                formatter: encoders => encoders[encoderName]?.length,
+                align: "right",
+                width: encoderName.length + 2
+            }
+        }
+    }
+}
+
+console.log(table([
+    {
+        alias: "Rank",
+        value: "rank",
+        align: "right",
+        width: 6
+    },
+    {
+        alias: "Method",
+        value: "name",
+        align: "left",
+        width: 32
+    },
+    {
+        alias: "MD5",
+        value: "bin",
+        formatter: bin => crypto.createHash("md5").update(bin).digest("hex").substring(0, 4),
+        width: 6
+    },
+    {
+        alias: "Bin size",
+        value: "bin",
+        formatter: bin => bin?.length,
+        width: 11,
+        align: "right"
+    },
+    ...Object.values(encoderHeaders),
+    {
+        alias: "Speed",
+        value: "time",
+        align: "right",
+        width: 8,
+        formatter: value => `${value} ms`
+    }
+], topResults).render())
 
 console.log(`winner: ${results[0].name}`)

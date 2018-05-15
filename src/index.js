@@ -1,19 +1,15 @@
-const safeChars = "123456789" + "ABCDEFGHJKLMNPQRSTUVWXYZ" + "abcdefghijkmnopqrstuvwxyz" + "!$&'()*+,;=" + "-._~:@/?" // eslint-disable-line no-useless-concat
-
-import baseX from "base-x"
 import lodash from "lodash"
 import defaultData from "./data"
 import defaultFormats from "./formats"
 import defaultCompressors from "./compressors"
-
-const base77 = baseX(safeChars)
+import defaultEncoders from "./encoders"
 
 export default (options = {}) => {
     options = {
         data: defaultData,
         formats: defaultFormats,
         compressors: defaultCompressors,
-        hashSafeEncode: bin => base77.encode(bin),
+        encoders: defaultEncoders,
         ...options
     }
 
@@ -22,8 +18,14 @@ export default (options = {}) => {
     const test = (name, func) => {
         const startTime = Number(new Date)
         const result = func()
-        if (!result.hashSafe) {
-            result.hashSafe = options.hashSafeEncode(result.bin)
+        if (!result.encoders) {
+            result.encoders = {}
+        }
+
+        for (const [encoderName, encoderFunction] of Object.entries(options.encoders)) {
+            if (!result.encoders[encoderName]) {
+                result.encoders[encoderName] = encoderFunction(result.bin)
+            }
         }
 
         const time = (Number(new Date) - startTime) || "< 1"
@@ -40,5 +42,5 @@ export default (options = {}) => {
         }
     }
 
-    return lodash.orderBy(results, [result => result.hashSafe?.length])
+    return lodash.orderBy(results, [result => result.bin.length])
 }

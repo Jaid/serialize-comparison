@@ -3,7 +3,7 @@
     "main": "./build/index.js",
     "bin": "./build/cli.js",
     "version": "1.0.0",
-    "description": "Comparison tool for analyzing performance and efficiency of serialization methods",
+    "description": "Comparison tool for analyzing performance and efficiency of object serialization methods",
     "license": "MIT",
     "author": {
         "name": "Jaid",
@@ -52,7 +52,7 @@
         "tty-table": "^2.6.3"
     },
     "scripts": {
-        "start": "node --require @babel/register src/cli.jsx",
+        "start": "node --require @babel/register src/cli.js",
         "build-prod": "npx rimraf build && NODE_ENV=production npx babel --out-dir build src",
         "build-dev": "NODE_ENV=development npx babel",
         "start-dev": "npm run build-dev && node build/cli.js",
