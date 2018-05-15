@@ -35,10 +35,13 @@
         "babel-eslint": "^8.2.3",
         "babel-plugin-lodash": "^3.3.2",
         "babel-preset-minify": "0.4",
+        "chalk": "^2.4.1",
         "ejs": "^2.6.1",
         "eslint": "^4.19.1",
         "faster.js": "^1.1.0",
+        "globby": "^8.0.1",
         "html-minifier": "^3.5.15",
+        "json5": "^1.0.1",
         "mkdirp": "^0.5.1"
     },
     "dependencies": {
@@ -56,6 +59,8 @@
     },
     "scripts": {
         "start": "node --require @babel/register src/cli.js",
+        "start-letter-frequency": "node --require @babel/register research/letterFrequency.js",
+        "build-website": "node --require @babel/register website",
         "build-prod": "npx rimraf build && NODE_ENV=production npx babel --out-dir build src",
         "build-dev": "NODE_ENV=development npx babel",
         "start-dev": "npm run build-dev && node build/cli.js",

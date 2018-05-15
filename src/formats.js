@@ -1,8 +1,10 @@
 import yaml from "js-yaml"
 import jsonpack from "jsonpack"
+import json5 from "json5"
 
 export default {
     json: input => JSON.stringify(input),
+    json5: input => json5.stringify(input),
     jsonpack: input => jsonpack.pack(input),
     yaml: input => yaml.safeDump(input, {
         skipInvalid: true,
