@@ -11,7 +11,8 @@ const printCount = 10
 const results = comparison()
 const topResults = lodash.slice(results, 0, printCount).map((result, index) => ({
     rank: index + 1,
-    ...result
+    ...result,
+    time: result.time ? result.time : "< 1"
 }))
 
 const encoderHeaders = {}
@@ -28,6 +29,8 @@ for (const result of topResults) {
         }
     }
 }
+
+console.log(topResults)
 
 console.log(table([
     {
