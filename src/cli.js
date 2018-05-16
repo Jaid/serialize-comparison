@@ -4,6 +4,8 @@ import crypto from "crypto"
 import lodash from "lodash"
 import table from "tty-table"
 
+const paddingSum = 3
+
 const results = comparison()
 const topResults = lodash.slice(results, 0, 20).map((result, index) => ({
     rank: index + 1,
@@ -19,7 +21,7 @@ for (const result of topResults) {
                 value: "encoders",
                 formatter: encoders => encoders[encoderName]?.length,
                 align: "right",
-                width: encoderName.length + 2
+                width: encoderName.length + paddingSum
             }
         }
     }
@@ -30,25 +32,19 @@ console.log(table([
         alias: "Rank",
         value: "rank",
         align: "right",
-        width: 6
+        width: "Rank".length + paddingSum
     },
     {
         alias: "Method",
         value: "name",
         align: "left",
-        width: 32
-    },
-    {
-        alias: "MD5",
-        value: "bin",
-        formatter: bin => crypto.createHash("md5").update(bin).digest("hex").toUpperCase().substring(0, 4),
-        width: 6
+        width: 30
     },
     {
         alias: "Bin size",
         value: "bin",
         formatter: bin => bin?.length,
-        width: 11,
+        width: "Bin size".length + paddingSum,
         align: "right"
     },
     ...Object.values(encoderHeaders),
@@ -56,8 +52,14 @@ console.log(table([
         alias: "Speed",
         value: "time",
         align: "right",
-        width: 8,
+        width: "Speed".length + paddingSum,
         formatter: value => `${value} ms`
+    },
+    {
+        alias: "MD5",
+        value: "bin",
+        formatter: bin => crypto.createHash("md5").update(bin).digest("hex").toUpperCase().substring(0, 4),
+        width: 4 + paddingSum
     }
 ], topResults).render())
 
