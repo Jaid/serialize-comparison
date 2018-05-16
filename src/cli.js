@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import comparison from "./index"
 
 import crypto from "crypto"
