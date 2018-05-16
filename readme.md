@@ -23,7 +23,7 @@ You can find the latest test results over here: [serialize-comparison.j4id.com](
 
 The most efficient way of compressing objects turned out to be using [`json5.stringify`](https://github.com/json5/json5) as serializer and [`compressjs.PPM.compressFile`](https://github.com/cscott/compressjs/blob/master/lib/PPM.js) as compression algorithm. The PPM compressor performs pretty fast and gives insane compression results for a wide spectrum of input data.
 
-Usage:
+Example:
 
 ```js
 import json5 from "json5"
@@ -38,6 +38,8 @@ const compressed = Buffer.from(PPM.compressFile(jsonBin)).toString("base64")
 #### Overall winner
 
 The best overall compression method is using [`json5.stringify`](https://github.com/json5/json5) as serializer and [`pako.deflate`](http://nodeca.github.io/pako) as compression algorithm. [`pako`](https://github.com/nodeca/pako)'s deflate implementation is around 3-10x quicker than [`compressjs`](https://github.com/cscott/compressjs)'s PPM implementation and provides almost the same compression rate.
+
+Example:
 
 ```js
 import json5 from "json5"
