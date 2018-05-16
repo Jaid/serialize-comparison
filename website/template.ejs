@@ -36,6 +36,19 @@
         #table tr:nth-child(odd) {
             background: #0003;
         }
+        #table td:nth-child(2) {
+            text-align: right;
+        }
+        #table td:nth-child(2)::after {
+            content: "➜";
+            position: absolute;
+            margin-left: 5px;
+            color: #404040;
+            text-shadow: 0 0 5px #171717;
+        }
+        #table td:nth-child(3) {
+            text-align: left;
+        }
         .number {
             text-align: right;
         }
