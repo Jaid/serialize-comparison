@@ -4,7 +4,7 @@ node_js:
 cache:
   yarn: true
 script:
-  - yarn run build-website && cp dist/index.html dist/404.html
+  - BENCHMARK_SAMPLES=100 yarn run build-website && cp dist/index.html dist/404.html
 deploy:
   provider: pages
   local-dir: ./dist/

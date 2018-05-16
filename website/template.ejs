@@ -59,8 +59,11 @@
 </head>
 <body>
     <img id="icon" src="<%= iconUrl %>"/>
-    <div id="banner"><%= manifest.name %></div>
-    <div id="description">v<%= manifest.version %><br/>See <a href="<%= manifest.repository.url %>">GitHub repository</a> for more information.</div>
+    <div id="banner"><%= manifest.name %> <%= manifest.version %></div>
+    <div id="description">
+    What is the best way to store data in a compact binary format? Here are the results.<br/>
+    See <a href="<%= manifest.repository.url %>">GitHub repository</a> for more information.
+    </div>
     <table id="table">
         <tr>
             <th>Rank</th>

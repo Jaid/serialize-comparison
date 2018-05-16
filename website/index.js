@@ -7,7 +7,7 @@ import {minify} from "html-minifier"
 import comparison from "../src"
 import input from "../src/data"
 
-const results = comparison().map((result, index) => ({
+const results = comparison({samples: Number(process.env.BENCHMARK_SAMPLES) || 5}).map((result, index) => ({
     rank: index + 1,
     md5: crypto.createHash("md5").update(result.bin).digest("hex").toUpperCase().substring(0, 4),
     ...result

@@ -10,6 +10,7 @@ export default (options = {}) => {
         formatters: defaultFormatters,
         compressors: defaultCompressors,
         encoders: defaultEncoders,
+        samples: 10,
         ...options
     }
 
@@ -31,18 +32,32 @@ export default (options = {}) => {
             }
         }
 
-        const time = (Number(new Date) - startTime) || "< 1"
+        const time = (Number(new Date) - startTime) || 1
 
-        results.push({
+        return {
             name: `${formatter.name} > ${compressor.name}`,
             time,
             ...result
-        })
+        }
     }
 
     for (const compressor of options.compressors) {
         for (const formatter of options.formatters) {
-            test(options.data, formatter, compressor)
+            if (options.samples > 1) {
+                let timeSum = 0
+                let result = null
+                for (let i = 0; i !== options.samples; i++) {
+                    result = test(options.data, formatter, compressor)
+                    timeSum += result.time
+                }
+
+                results.push({
+                    ...result,
+                    time: Math.round(timeSum / options.samples)
+                })
+            } else {
+                results.push(test(options.data, formatter, compressor))
+            }
         }
     }
 

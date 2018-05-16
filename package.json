@@ -2,7 +2,7 @@
     "name": "serialize-comparison",
     "main": "./build/index.js",
     "bin": "./build/cli.js",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "Comparison tool for analyzing performance and efficiency of object serialization methods",
     "license": "MIT",
     "author": {
