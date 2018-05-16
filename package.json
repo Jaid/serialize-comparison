@@ -3,7 +3,7 @@
     "main": "./build/index.js",
     "bin": "./build/cli.js",
     "version": "1.0.2",
-    "description": "Comparison tool for analyzing performance and efficiency of object serialization methods",
+    "description": "Comparison tool for analyzing performance and efficiency of serialization methods",
     "license": "MIT",
     "author": {
         "name": "Jaid",
