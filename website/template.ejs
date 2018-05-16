@@ -85,7 +85,7 @@
             <% for (const [name, encoder] of Object.entries(encoderHeaders)) { %>
                 <td class="number"><%= encoder.getter(result) %></td>
             <% } %>
-            <td class="number"><%= result.time %> ms</td>
+            <td title="Samples: <%= samples + '\n' %><%= Object.entries(result.sampleStats).map(([name, value]) => name + ': ' + value).join("\n") %>" class="number"><%= result.time %> ms</td>
             <td><code><%= result.md5 %></code></td>
         </tr>
     <% } %>

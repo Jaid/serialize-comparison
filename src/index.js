@@ -32,11 +32,9 @@ export default (options = {}) => {
             }
         }
 
-        const time = (Number(new Date) - startTime) || 1
-
         return {
             name: `${formatter.name} > ${compressor.name}`,
-            time,
+            time: Number(new Date) - startTime,
             ...result
         }
     }
@@ -44,16 +42,16 @@ export default (options = {}) => {
     for (const compressor of options.compressors) {
         for (const formatter of options.formatters) {
             if (options.samples > 1) {
-                let timeSum = 0
                 let result = null
-                for (let i = 0; i !== options.samples; i++) {
+                const sampleTimes = lodash.times(options.samples, () => {
                     result = test(options.data, formatter, compressor)
-                    timeSum += result.time
-                }
+                    return result.time
+                })
 
                 results.push({
+                    sampleTimes,
                     ...result,
-                    time: Math.round(timeSum / options.samples)
+                    time: Math.round(sampleTimes.reduce((accumulator, value) => accumulator + value, 0) / sampleTimes.length)
                 })
             } else {
                 results.push(test(options.data, formatter, compressor))

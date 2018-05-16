@@ -6,10 +6,20 @@ import mkdirp from "mkdirp"
 import {minify} from "html-minifier"
 import comparison from "../src"
 import input from "../src/data"
+import {mean, median, variance} from "stats-lite"
+import numeral from "numeral"
 
-const results = comparison({samples: Number(process.env.BENCHMARK_SAMPLES) || 5}).map((result, index) => ({
+const samples = Number(process.env.BENCHMARK_SAMPLES) || 5
+const results = comparison({samples}).map((result, index) => ({
     rank: index + 1,
     md5: crypto.createHash("md5").update(result.bin).digest("hex").toUpperCase().substring(0, 4),
+    sampleStats: {
+        Mean: `${numeral(mean(result.sampleTimes)).format("0.[00]")} ms`,
+        Median: `${numeral(median(result.sampleTimes)).format("0.[00]")} ms`,
+        Min: `${Math.min(...result.sampleTimes)} ms`,
+        Max: `${Math.max(...result.sampleTimes)} ms`,
+        Variance: numeral(variance(result.sampleTimes)).format("0.[00]")
+    },
     ...result
 }))
 
@@ -32,6 +42,7 @@ const html = ejs.render(template, {
     results,
     encoderHeaders,
     iconUrl,
+    samples,
     input: JSON.stringify(input, null),
     manifest: require(path.resolve("package.json"))
 })
