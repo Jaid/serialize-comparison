@@ -9,6 +9,7 @@
             color: #DDD;
             font-family: Ubuntu, Roboto, Arial, sans-serif;
             text-align: center;
+            padding: 2em;
         }
         a {
             text-decoration: none;
@@ -37,6 +38,22 @@
         }
         .number {
             text-align: right;
+        }
+        #inputHeader {
+            margin-top: 2em;
+            margin-bottom: 1em;
+        }
+        pre {
+            width: 64em;
+            margin: auto;
+            padding: 1em;
+            background: #0003;
+            border: 1px solid #404040;
+            text-align: initial;
+        }
+        code {
+            white-space: pre-wrap;
+            word-break: break-all;
         }
     </style>
 </head>
@@ -70,5 +87,7 @@
         </tr>
     <% } %>
     </table>
+    <div id="inputHeader">Input data formatted as JSON:</div>
+    <pre><code><%= input %></code></pre>
 </body>
 </html>

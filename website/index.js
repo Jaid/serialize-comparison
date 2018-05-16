@@ -5,6 +5,7 @@ import crypto from "crypto"
 import mkdirp from "mkdirp"
 import {minify} from "html-minifier"
 import comparison from "../src"
+import input from "../src/data"
 
 const results = comparison().map((result, index) => ({
     rank: index + 1,
@@ -31,6 +32,7 @@ const html = ejs.render(template, {
     results,
     encoderHeaders,
     iconUrl,
+    input: JSON.stringify(input, null),
     manifest: require(path.resolve("package.json"))
 })
 
