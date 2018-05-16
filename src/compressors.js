@@ -11,11 +11,11 @@ const zlibDictionaries = {
 
 const compressors = [
     {
-        compress: text => Buffer.from(text),
+        compress: text => text,
         name: "(uncompressed)"
     },
     {
-        compress: text => Buffer.from(lzString.compress(text)),
+        compress: text => lzString.compress(text),
         name: "lz-string",
         link: "https://github.com/pieroxy/lz-string"
     },
@@ -30,7 +30,7 @@ const compressors = [
         link: "http://nodeca.github.io/pako"
     },
     {
-        compress: text => Buffer.from(lzjs.compress(text)),
+        compress: text => lzjs.compress(text),
         name: "lzjs",
         link: "https://github.com/polygonplanet/lzjs"
     }

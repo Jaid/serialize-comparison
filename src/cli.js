@@ -5,9 +5,10 @@ import lodash from "lodash"
 import table from "tty-table"
 
 const paddingSum = 3
+const printCount = 10
 
 const results = comparison()
-const topResults = lodash.slice(results, 0, 20).map((result, index) => ({
+const topResults = lodash.slice(results, 0, printCount).map((result, index) => ({
     rank: index + 1,
     ...result
 }))

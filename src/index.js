@@ -19,10 +19,15 @@ export default (options = {}) => {
     const test = (data, formatter, compressor) => {
         const startTime = Number(new Date)
         const serialized = formatter.format(data)
+        let compressed = compressor.compress(serialized)
+        if (!(compressed instanceof Buffer)) {
+            compressed = Buffer.from(compressed)
+        }
+
         const result = {
             compressor,
             formatter,
-            bin: compressor.compress(serialized),
+            bin: compressed,
             encoders: {}
         }
 
