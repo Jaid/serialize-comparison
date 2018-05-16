@@ -61,6 +61,7 @@
         "html-minifier": "^3.5.15",
         "json5": "^1.0.1",
         "mkdirp": "^0.5.1",
+        "np": "^2.20.1",
         "numeral": "^2.0.6",
         "stats-lite": "^2.1.1"
     },
@@ -82,6 +83,7 @@
         "build-prod": "npx rimraf build && NODE_ENV=production npx babel --out-dir build src",
         "fix": "npx eslint --fix --ext .jsx,.js src",
         "dist-size": "npm run build-prod && npx dist-size build",
-        "env": "printenv"
+        "env": "printenv",
+        "np": "npm run build-prod && npx np"
     }
 }
