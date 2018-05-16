@@ -8,13 +8,13 @@ export default {
             }
         },
         string: "TESTSTRING",
-        longString: "This is a veEeEeEeEeEeEeEeEery lo0o0o0o0o0o0o0o0o0o0o0o0o0o0o0o0o0o0o0o0o0o0o0ong string!",
+        longString: "This is a veEeEeEeEeEeEeEeEeEeEeEeEeEeEeEeEeEeEeEeEeEeEeEeEeEeEery lo0o0o0o0o0o0o0o0o0o0o0o0o0o0o0o0o0o0o0o0o0o0o0ong string!",
         undef: undefined,
         zeroInGerman: null,
         number: 123,
         decimal: 0.1 + 0.3,
         longNumber: 1526322791712,
-        litteNumbers: [
+        littleNumbers: [
             5,
             14,
             5,
@@ -64,11 +64,12 @@ export default {
             },
             mobile: {
                 android: true,
+                symbian: false,
                 iOs: false,
                 blackberryOs: false,
                 windows: false
             }
         },
-        text: "I'm beginning to feel like a rap god, rap god. All my people from the front to the back nod, back nod. Now who thinks their arms are long enough to slap box, slap box? Let me show you maintaining these serializers ain't that hard, that hard."
+        text: "Now who thinks their arms are long enough to slap box, slap box? Let me show you maintaining these serializers ain't that hard, that hard."
     }
 }
