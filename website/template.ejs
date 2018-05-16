@@ -69,6 +69,13 @@
             word-break: break-all;
         }
     </style>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-51563406-6"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {dataLayer.push(arguments);}
+      gtag('js', new Date);
+      gtag('config', 'UA-51563406-6');
+    </script>
 </head>
 <body>
     <img id="icon" src="<%= iconUrl %>"/>
@@ -81,7 +88,7 @@
         <tr>
             <th>Rank</th>
             <th>Serializer</th>
-            <th>Compressing Algorithm</th>
+            <th>Compressing algorithm</th>
             <th>Bin size</th>
             <% for (const [name, encoder] of Object.entries(encoderHeaders)) { %>
                 <th><%= name %> size</th>
