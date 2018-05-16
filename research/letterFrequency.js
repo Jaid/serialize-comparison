@@ -1,6 +1,5 @@
 import fs from "fs"
 import globby from "globby"
-import path from "path"
 import lodash from "lodash"
 import chalk from "chalk"
 import yaml from "js-yaml"
