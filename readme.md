@@ -30,8 +30,8 @@ import msgpack from "msgpack5"
 import { PPM } from "compressjs"
 
 const data = {a: "a", b: 2}
-const dataPacked = msgpack().encode(data))
-const compressed = Buffer.from(PPM.compressFile(dataPacked)).toString("base64")
+const dataSerialized = msgpack().encode(data))
+const compressed = Buffer.from(PPM.compressFile(dataSerialized)).toString("base64")
 // compressed = "cHBtMomCeMnJ+l4CAAAM"
 ```
 
