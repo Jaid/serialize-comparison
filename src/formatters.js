@@ -1,12 +1,20 @@
 import yaml from "js-yaml"
 import jsonpack from "jsonpack"
 import json5 from "json5"
+import cson from "cson"
+import msgpack from "msgpack5"
+import {ProgressivePair} from "@as-com/pson"
 
 export default [
     {
         name: "JSON",
         link: "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify",
         format: input => JSON.stringify(input)
+    },
+    {
+        name: "CSON",
+        link: "https://github.com/groupon/cson-parser",
+        format: input => cson.stringify(input)
     },
     {
         name: "json5",
@@ -44,5 +52,15 @@ export default [
                 "!!null": "canonical"
             }
         })
+    },
+    {
+        name: "msgpack v5",
+        link: "https://github.com/mcollina/msgpack5",
+        format: input => msgpack().encode(input)
+    },
+    {
+        name: "PSON",
+        link: "https://github.com/as-com/PSON",
+        format: input => (new ProgressivePair()).encode(input).compact().toBuffer()
     }
 ]

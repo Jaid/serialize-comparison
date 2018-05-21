@@ -19,7 +19,11 @@ export default (options = {}) => {
     const test = (data, formatter, compressor) => {
         const startTime = Number(new Date)
         const serialized = formatter.format(data)
-        let compressed = compressor.compress(serialized)
+        let compressed = compressor.compress(Buffer.from(serialized))
+        if (compressed === null) {
+            return null
+        }
+
         if (!(compressed instanceof Buffer)) {
             compressed = Buffer.from(compressed)
         }
@@ -46,12 +50,18 @@ export default (options = {}) => {
 
     for (const compressor of options.compressors) {
         for (const formatter of options.formatters) {
+            let result = test(options.data, formatter, compressor)
+            if (!result) {
+                continue
+            }
+
             if (options.samples > 1) {
-                let result = null
-                const sampleTimes = lodash.times(options.samples, () => {
-                    result = test(options.data, formatter, compressor)
-                    return result.time
-                })
+                const sampleTimes = [
+                    result.time, ...lodash.times(options.samples - 1, () => {
+                        result = test(options.data, formatter, compressor)
+                        return result.time
+                    })
+                ]
 
                 results.push({
                     sampleTimes,
@@ -59,7 +69,7 @@ export default (options = {}) => {
                     time: Math.round(sampleTimes.reduce((accumulator, value) => accumulator + value, 0) / sampleTimes.length)
                 })
             } else {
-                results.push(test(options.data, formatter, compressor))
+                results.push(result)
             }
         }
     }

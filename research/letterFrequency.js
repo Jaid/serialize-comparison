@@ -32,7 +32,7 @@ const test = (name, glob, formatter) => {
 
     const top64 = map
     |> Object.entries
-    |> value => lodash.orderBy(value, [([letter, count]) => count], ["desc"])
+    |> value => lodash.orderBy(value, [pair => pair[1]], ["desc"])
     |> value => lodash.slice(value, 0, 64)
     |> lodash.reverse
     |> lodash.fromPairs

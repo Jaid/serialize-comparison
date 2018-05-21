@@ -25,7 +25,7 @@ const results = comparison({samples}).map((result, index) => ({
 
 const encoderHeaders = {}
 for (const result of results) {
-    for (const [encoderName, text] of Object.entries(result.encoders)) {
+    for (const [encoderName] of Object.entries(result.encoders)) {
         if (!encoderHeaders[encoderName]) {
             encoderHeaders[encoderName] = {
                 alias: `${encoderName} size`,

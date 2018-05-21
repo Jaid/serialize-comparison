@@ -15,7 +15,7 @@ const compressors = [
         name: "(uncompressed)"
     },
     {
-        compress: text => lzString.compress(text),
+        compress: text => text instanceof Buffer ? null : lzString.compress(text),
         name: "lz-string",
         link: "https://github.com/pieroxy/lz-string"
     },

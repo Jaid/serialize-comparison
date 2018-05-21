@@ -13,7 +13,7 @@
 
 I was looking for a quick and efficient method of compressing a JavaScript object into a url-safe (actually [url-fragment-safe](https://stackoverflow.com/a/2849800), which seems to allow 77 different characters) string. This was needed to convert a React component state into a permalink (like `example.com/#setStateWithUrlFragmentData`), although React component states are just plain JavaScript objects, so this project is not framework-depended.
 
-The comparison base currently contains over 100 different methods of compressing objects into strings and corresponding scripts to test those methods regarding performance and compression rate.
+The comparison base currently contains over 160 different methods of compressing objects into strings and corresponding scripts to test those methods regarding performance and compression rate.
 
 You can find the latest test results over here: [serialize-comparison.j4id.com](https://serialize-comparison.j4id.com)
 
@@ -21,18 +21,18 @@ You can find the latest test results over here: [serialize-comparison.j4id.com](
 
 #### Compression winner
 
-The most efficient way of compressing objects turned out to be using [`json5.stringify`](https://github.com/json5/json5) as serializer and [`compressjs.PPM.compressFile`](https://github.com/cscott/compressjs/blob/master/lib/PPM.js) as compression algorithm. The PPM compressor performs pretty fast and gives insane compression results for a wide spectrum of input data.
+The most efficient way of compressing objects turned out to be using [`msgpack5`](https://github.com/mcollina/msgpack5) as serializer and [`compressjs.PPM.compressFile`](https://github.com/cscott/compressjs/blob/master/lib/PPM.js) as compression algorithm. The PPM compressor performs pretty fast and gives insane compression results for a wide spectrum of input data.
 
 Example:
 
 ```js
-import json5 from "json5"
+import msgpack from "msgpack5"
 import { PPM } from "compressjs"
 
 const data = {a: "a", b: 2}
-const jsonBin = Buffer.from(json5.stringify(data))
-const compressed = Buffer.from(PPM.compressFile(jsonBin)).toString("base64")
-// compressed = "cHBtMox7SUatlC182jxNFQAAEA=="
+const dataPacked = msgpack().encode(data))
+const compressed = Buffer.from(PPM.compressFile(dataPacked)).toString("base64")
+// compressed = "cHBtMomCeMnJ+l4CAAAM"
 ```
 
 #### Overall winner
