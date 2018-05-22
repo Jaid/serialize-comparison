@@ -5,11 +5,11 @@
   serialize-comparison
 </h1>
 
-[![MIT License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](./license.txt)
+[![MIT license](https://img.shields.io/badge/license-MIT-brightgreen.svg)](./license.txt)
 [![Travis build](https://travis-ci.org/Jaid/serialize-comparison.svg)](https://travis-ci.org/Jaid/serialize-comparison)
 [![npm package](https://img.shields.io/npm/v/serialize-comparison.svg)](https://www.npmjs.com/package/serialize-comparison)
 [![Website](https://img.shields.io/badge/page-j4id.com-blue.svg)](http://serialize-comparison.j4id.com)
-[![Donate button](https://img.shields.io/badge/donate-PayPal-ff0080.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=RW8UHK5ZG3BX4)
+[![Donate button](https://img.shields.io/badge/donate-PayPal-ff0080.svg)](https://donate.j4id.com)
 
 I was looking for a quick and efficient method of compressing a JavaScript object into a url-safe (actually [url-fragment-safe](https://stackoverflow.com/a/2849800), which seems to allow 77 different characters) string. This was needed to convert a React component state into a permalink (like `example.com/#setStateWithUrlFragmentData`), although React component states are just plain JavaScript objects, so this project is not framework-depended.
 
