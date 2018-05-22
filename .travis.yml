@@ -4,10 +4,16 @@ node_js:
 cache:
   yarn: true
 script:
-  - BENCHMARK_SAMPLES=100 yarn run build-website && cp dist/index.html dist/404.html
+  - BENCHMARK_SAMPLES=100 yarn run build-website && cp dist/index.html dist/404.html && yarn start --count 0 --csv report.csv
 deploy:
-  provider: pages
-  local-dir: ./dist/
-  fqdn: serialize-comparison.j4id.com
-  skip-cleanup: true
-  github-token: $GITHUB_TOKEN # https://github.com/settings/tokens
+  - provider: pages
+    local-dir: ./dist/
+    fqdn: serialize-comparison.j4id.com
+    skip-cleanup: true
+    github-token: $GITHUB_TOKEN # https://github.com/settings/tokens
+  - provider: releases
+    file: report.csv
+    skip-cleanup: true
+    api-key: $GITHUB_TOKEN
+    on:
+      tags: true
