@@ -89,6 +89,6 @@
         "fix": "npx eslint --fix --ext .jsx,.js src",
         "dist-size": "npm run build-prod && npx dist-size build",
         "env": "printenv",
-        "np": "npm run build-prod && npx np"
+        "np": "npm run build-prod && npx np && git push --tags"
     }
 }
