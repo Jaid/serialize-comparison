@@ -1,97 +1,97 @@
 {
-    "name": "serialize-comparison",
-    "main": "./build/index.js",
-    "bin": "./build/cli.js",
-    "version": "3.0.0",
-    "description": "Comparison tool for analyzing performance and efficiency of serialization methods",
-    "license": "MIT",
-    "author": {
-        "name": "Jaid",
-        "url": "https://github.com/Jaid",
-        "email": "jaid.jsx@gmail.com"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/Jaid/serialize-comparison"
-    },
-    "engines": {
-        "node": ">=6.10"
-    },
-    "files": [
-        "build/*"
-    ],
-    "babel": {
-        "extends": "./config/babel.js"
-    },
-    "eslintConfig": {
-        "extends": "jaid"
-    },
-    "keywords": [
-        "compressing",
-        "compressed",
-        "compress",
-        "serialize",
-        "serializer",
-        "serialization",
-        "stringify",
-        "json",
-        "yaml",
-        "test",
-        "demo",
-        "deflate",
-        "zlib",
-        "benchmark",
-        "comparison"
-    ],
-    "devDependencies": {
-        "@babel/cli": "^7.2.3",
-        "@babel/core": "^7.2.2",
-        "@babel/plugin-proposal-optional-chaining": "^7.2.0",
-        "@babel/plugin-proposal-pipeline-operator": "^7.2.0",
-        "@babel/preset-env": "7.2.3",
-        "@babel/register": "^7.0.0",
-        "babel-eslint": "^10.0.1",
-        "babel-plugin-lodash": "^3.3.4",
-        "babel-preset-minify": "0.5.0",
-        "chalk": "^2.4.2",
-        "cson": "^5.1.0",
-        "dist-size": "^0.4.0",
-        "ejs": "^2.6.1",
-        "eslint": "^5.12.0",
-        "eslint-config-jaid": "^1.7.0",
-        "faster.js": "^1.1.0",
-        "globby": "^8.0.2",
-        "html-minifier": "^3.5.21",
-        "json5": "^2.1.0",
-        "mkdirp": "^0.5.1",
-        "np": "^3.1.0",
-        "numeral": "^2.0.6",
-        "stats-lite": "^2.2.0"
-    },
-    "dependencies": {
-        "@as-com/pson": "^3.0.1",
-        "base-x": "^3.0.5",
-        "commander": "^2.19.0",
-        "compressjs": "^1.0.3",
-        "csv-write-stream": "^2.0.0",
-        "iltorb": "^2.4.1",
-        "js-yaml": "^3.12.1",
-        "jsonpack": "^1.1.5",
-        "lodash": "^4.17.11",
-        "lz-string": "^1.4.4",
-        "lzjs": "^1.3.0",
-        "msgpack5": "^4.2.1",
-        "pako": "^1.0.7",
-        "tty-table": "^2.6.3"
-    },
-    "scripts": {
-        "start": "node --require @babel/register src/cli.js",
-        "start-letter-frequency": "node --require @babel/register research/letterFrequency.js",
-        "build-website": "node --require @babel/register website",
-        "build-prod": "npx rimraf build && NODE_ENV=production npx babel --out-dir build src",
-        "fix": "npx eslint --fix .",
-        "dist-size": "npm run build-prod && npx dist-size build",
-        "env": "printenv",
-        "np": "npm run build-prod && npx np && git push --tags"
-    }
+  "name": "serialize-comparison",
+  "main": "./build/index.js",
+  "bin": "./build/cli.js",
+  "version": "3.0.0",
+  "description": "Comparison tool for analyzing performance and efficiency of serialization methods",
+  "license": "MIT",
+  "author": {
+    "name": "Jaid",
+    "url": "https://github.com/Jaid",
+    "email": "jaid.jsx@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Jaid/serialize-comparison"
+  },
+  "engines": {
+    "node": ">=6.10"
+  },
+  "files": [
+    "build/*"
+  ],
+  "babel": {
+    "extends": "./config/babel.js"
+  },
+  "eslintConfig": {
+    "extends": "jaid"
+  },
+  "keywords": [
+    "compressing",
+    "compressed",
+    "compress",
+    "serialize",
+    "serializer",
+    "serialization",
+    "stringify",
+    "json",
+    "yaml",
+    "test",
+    "demo",
+    "deflate",
+    "zlib",
+    "benchmark",
+    "comparison"
+  ],
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/plugin-proposal-optional-chaining": "^7.2.0",
+    "@babel/plugin-proposal-pipeline-operator": "^7.2.0",
+    "@babel/preset-env": "7.2.3",
+    "@babel/register": "^7.0.0",
+    "babel-eslint": "^10.0.1",
+    "babel-plugin-lodash": "^3.3.4",
+    "babel-preset-minify": "0.5.0",
+    "chalk": "^2.4.2",
+    "cson": "^5.1.0",
+    "dist-size": "^0.4.0",
+    "ejs": "^2.6.1",
+    "eslint": "^5.12.0",
+    "eslint-config-jaid": "^1.7.0",
+    "faster.js": "^1.1.0",
+    "globby": "^8.0.2",
+    "html-minifier": "^3.5.21",
+    "json5": "^2.1.0",
+    "mkdirp": "^0.5.1",
+    "np": "^3.1.0",
+    "numeral": "^2.0.6",
+    "stats-lite": "^2.2.0"
+  },
+  "dependencies": {
+    "@as-com/pson": "^3.0.1",
+    "base-x": "^3.0.5",
+    "commander": "^2.19.0",
+    "compressjs": "^1.0.3",
+    "csv-write-stream": "^2.0.0",
+    "iltorb": "^2.4.1",
+    "js-yaml": "^3.12.1",
+    "jsonpack": "^1.1.5",
+    "lodash": "^4.17.11",
+    "lz-string": "^1.4.4",
+    "lzjs": "^1.3.0",
+    "msgpack5": "^4.2.1",
+    "pako": "^1.0.7",
+    "tty-table": "^2.6.3"
+  },
+  "scripts": {
+    "start": "node --require @babel/register src/cli.js",
+    "start-letter-frequency": "node --require @babel/register research/letterFrequency.js",
+    "build-website": "node --require @babel/register website",
+    "build-prod": "npx rimraf build && cross-env NODE_ENV=production npx babel --out-dir build src",
+    "fix": "npx eslint --fix .",
+    "dist-size": "npm run build-prod && npx dist-size build",
+    "env": "printenv",
+    "np": "npm run build-prod && npx np && git push --tags"
+  }
 }
