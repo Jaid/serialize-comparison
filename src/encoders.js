@@ -6,6 +6,6 @@ const safeChars = "123456789" + "ABCDEFGHJKLMNPQRSTUVWXYZ" + "abcdefghijkmnopqrs
 const base77 = baseX(safeChars)
 
 export default {
-    "fragment-safe": bin => base77.encode(bin),
-    base64: bin => bin.toString("base64")
+  "fragment-safe": bin => base77.encode(bin),
+  base64: bin => bin.toString("base64")
 }

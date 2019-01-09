@@ -3,30 +3,29 @@ const isDevelopment = process.env.NODE_ENV !== "production"
 const config = {}
 
 const presets = [
-    [
-        "@babel/env", {
-            targets: {
-                node: "6.10"
-            }
-        }
-    ],
-    ["@babel/stage-1", {decoratorsLegacy: true}] // https://github.com/babel/babel/issues/7786
+  [
+    "@babel/env", {
+      targets: {
+        node: "current"
+      }
+    }
+  ]
 ]
 
-const plugins = []
+const plugins = ["@babel/proposal-optional-chaining"]
 
 if (isDevelopment) {
-    config.sourceMaps = "inline"
+  config.sourceMaps = "inline"
 } else {
-    plugins.push("lodash")
-    plugins.push("module:faster.js")
-    presets.push("minify")
-    config.comments = false
+  plugins.push("lodash")
+  plugins.push("module:faster.js")
+  presets.push("minify")
+  config.comments = false
 }
 
 Object.assign(config, {
-    presets,
-    plugins
+  presets,
+  plugins
 })
 
 module.exports = config
