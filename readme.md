@@ -19,7 +19,7 @@ You can find the latest test results over here: [serialize-comparison.jaid.codes
 
 ## Winner
 
-The most efficient way of compressing objects turned out to be [`json5`](https://github.com/mcollina/msgpack5) as serializer and [`brotli`](https://github.com/cscott/compressjs/blob/master/lib/PPM.js) as compression algorithm. The Brotli compressor performs pretty fast and gives insane compression results for a wide spectrum of input data.
+The most efficient way of compressing objects turned out to be [`json5`](https://github.com/json5/json5) as serializer and [`brotli`](https://github.com/MayhemYDG/iltorb) as compression algorithm. The Brotli compressor performs pretty fast and gives insane compression results for a wide spectrum of input data.
 
 Example:
 
