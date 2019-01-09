@@ -1,5 +1,5 @@
 <h1 align="center">
-  <a href="https://serialize-comparison.j4id.com">
+  <a href="https://serialize-comparison.jaid.codes">
   <img src="./config/icon.png" alt="Logo">
   </a>
   serialize-comparison
@@ -8,47 +8,29 @@
 [![MIT license](https://img.shields.io/badge/license-MIT-brightgreen.svg)](./license.txt)
 [![Travis build](https://travis-ci.org/Jaid/serialize-comparison.svg)](https://travis-ci.org/Jaid/serialize-comparison)
 [![npm package](https://img.shields.io/npm/v/serialize-comparison.svg)](https://www.npmjs.com/package/serialize-comparison)
-[![Website](https://img.shields.io/badge/page-j4id.com-blue.svg)](http://serialize-comparison.j4id.com)
-[![Donate button](https://img.shields.io/badge/donate-PayPal-ff0080.svg)](https://donate.j4id.com)
+[![Website](https://img.shields.io/badge/page-jaid.codes-blue.svg)](http://serialize-comparison.jaid.codes)
+[![Donate button](https://img.shields.io/badge/donate-PayPal-ff0080.svg)](https://donate.jaid.codes)
 
 I was looking for a quick and efficient method of compressing a JavaScript object into a url-safe (actually [url-fragment-safe](https://stackoverflow.com/a/2849800), which seems to allow 77 different characters) string. This was needed to convert a React component state into a permalink (like `example.com/#setStateWithUrlFragmentData`), although React component states are just plain JavaScript objects, so this project is not framework-depended.
 
 The comparison base currently contains over 160 different methods of compressing objects into strings and corresponding scripts to test those methods regarding performance and compression rate.
 
-You can find the latest test results over here: [serialize-comparison.j4id.com](https://serialize-comparison.j4id.com)
+You can find the latest test results over here: [serialize-comparison.jaid.codes](https://serialize-comparison.jaid.codes)
 
 ## Winner
 
-#### Compression winner
-
-The most efficient way of compressing objects turned out to be using [`msgpack5`](https://github.com/mcollina/msgpack5) as serializer and [`compressjs.PPM.compressFile`](https://github.com/cscott/compressjs/blob/master/lib/PPM.js) as compression algorithm. The PPM compressor performs pretty fast and gives insane compression results for a wide spectrum of input data.
-
-Example:
-
-```js
-import msgpack from "msgpack5"
-import { PPM } from "compressjs"
-
-const data = {a: "a", b: 2}
-const dataSerialized = msgpack().encode(data))
-const compressed = Buffer.from(PPM.compressFile(dataSerialized)).toString("base64")
-// compressed = "cHBtMomCeMnJ+l4CAAAM"
-```
-
-#### Overall winner
-
-The best overall compression method is using [`json5.stringify`](https://github.com/json5/json5) as serializer and [`pako.deflate`](http://nodeca.github.io/pako) as compression algorithm. [`pako`](https://github.com/nodeca/pako)'s deflate implementation is around 3-10x quicker than [`compressjs`](https://github.com/cscott/compressjs)'s PPM implementation and provides almost the same compression rate.
+The most efficient way of compressing objects turned out to be [`json5`](https://github.com/mcollina/msgpack5) as serializer and [`brotli`](https://github.com/cscott/compressjs/blob/master/lib/PPM.js) as compression algorithm. The Brotli compressor performs pretty fast and gives insane compression results for a wide spectrum of input data.
 
 Example:
 
 ```js
 import json5 from "json5"
-import { deflate } from "pako"
+import { compressSync } from "iltorb"
 
 const data = {a: "a", b: 2}
 const jsonBin = Buffer.from(json5.stringify(data))
-const compressed = Buffer.from(deflate(jsonBin)).toString("base64")
-// compressed = "eJyrTrRST1TXSbIyqgUAE+QDPQ=="
+const compressed = Buffer.from(compressSync(jsonBin)).toString("base64")
+// compressed = "CwWAe2E6J2EnLGI6Mn0D"
 ```
 
 #### The search is not over
@@ -76,10 +58,10 @@ npm install --global serialize-comparison
 serialize-comparison
 ```
 
-![CLI Screenshot](https://i.imgur.com/X95JaYi.png)
+![CLI Screenshot](https://i.imgur.com/OczUpoo.png)
 
 ## License
 
-Copyright © 2018  
-Licensed under [MIT](./license.txt)  
-Jaid ([github.com/Jaid](https://github.com/Jaid))  
+Copyright © 2019
+Licensed under [MIT](./license.txt)
+Jaid ([github.com/Jaid](https://github.com/Jaid))
