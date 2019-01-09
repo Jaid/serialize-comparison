@@ -3,7 +3,7 @@
 
 # Node packages
 /node_modules/
-/package-lock.json # Removing because we use yarn.lock
+/package-lock.json
 /yarn-error.log
 
 # Generated or temporary content

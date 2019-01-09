@@ -2,6 +2,7 @@ import lzString from "lz-string"
 import pako from "pako"
 import lzjs from "lzjs"
 import compressJs from "compressjs"
+import iltorb from "iltorb"
 
 const zlibDictionaries = {
   json: "0123456789LNPWZUDACRJVEMqTIjS#kzwxv_{}f-gbhmdupc/ yl.oraistne,:\"",
@@ -33,11 +34,24 @@ const compressors = [
     compress: text => lzjs.compress(text),
     name: "lzjs",
     link: "https://github.com/polygonplanet/lzjs"
+  },
+  {
+    compress: text => iltorb.compressSync(text),
+    name: "brotli-default",
+    link: "https://github.com/MayhemYDG/iltorb"
+  },
+  {
+    compress: text => iltorb.compressSync(text, {
+      mode: 1, // See https://github.com/google/brotli/blob/v1.0.4/c/include/brotli/encode.h#L54
+      quality: 11 // See https://github.com/google/brotli/blob/v1.0.4/c/include/brotli/encode.h#L42
+    }),
+    name: "brotli-configured",
+    link: "https://github.com/MayhemYDG/iltorb"
   }
 ]
 
 for (const [compressorName, object] of Object.entries(compressJs)) {
-  if (object?.compressFile) {
+  if (object ?.compressFile) {
     compressors.push({
       compress: text => object.compressFile(Buffer.from(text)),
       name: `compressjs.${compressorName}`,
