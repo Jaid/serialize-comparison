@@ -9,7 +9,7 @@
 [![Travis build](https://travis-ci.org/Jaid/serialize-comparison.svg)](https://travis-ci.org/Jaid/serialize-comparison)
 [![npm package](https://img.shields.io/npm/v/serialize-comparison.svg)](https://www.npmjs.com/package/serialize-comparison)
 [![Website](https://img.shields.io/badge/page-jaid.codes-blue.svg)](http://serialize-comparison.jaid.codes)
-[![Donate button](https://img.shields.io/badge/donate-PayPal-ff0080.svg)](https://donate.jaid.codes)
+[![Donate button](https://img.shields.io/badge/donate-PayPal-ff0080.svg)](https://donate.jaid.codes) [![Greenkeeper badge](https://badges.greenkeeper.io/Jaid/serialize-comparison.svg)](https://greenkeeper.io/)
 
 I was looking for a quick and efficient method of compressing a JavaScript object into a url-safe (actually [url-fragment-safe](https://stackoverflow.com/a/2849800), which seems to allow 77 different characters) string. This was needed to convert a React component state into a permalink (like `example.com/#setStateWithUrlFragmentData`), although React component states are just plain JavaScript objects, so this project is not framework-depended.
 
