@@ -83,7 +83,7 @@
     "lzjs": "^1.3.0",
     "msgpack5": "^4.2.1",
     "pako": "^1.0.7",
-    "tty-table": "^2.6.3"
+    "tty-table": "^2.7.0"
   },
   "scripts": {
     "start": "node --require @babel/register src/cli.js",
