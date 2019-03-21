@@ -76,7 +76,7 @@
     "compressjs": "^1.0.3",
     "csv-write-stream": "^2.0.0",
     "iltorb": "^2.4.2",
-    "js-yaml": "^3.12.1",
+    "js-yaml": "^3.13.0",
     "jsonpack": "^1.1.5",
     "lodash": "^4.17.11",
     "lz-string": "^1.4.4",
