@@ -61,7 +61,7 @@
     "eslint": "^5.12.0",
     "eslint-config-jaid": "^1.12.0",
     "faster.js": "^1.1.0",
-    "globby": "^9.1.0",
+    "globby": "^9.2.0",
     "html-minifier": "^3.5.21",
     "json5": "^2.1.0",
     "mkdirp": "^0.5.1",
